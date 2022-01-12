@@ -1,0 +1,63 @@
+{% load static i18n %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{% static 'vendor/bootstrap/css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/bootstrap/bootstrap-icons/bootstrap-icons.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>Index</title>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#"><img src="{% static 'img/themvu.png' %}" alt="uzbekistan"></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 hidden">
+            <li></li>
+        </ul>
+      <ul class="navbar-nav mb-2 mb-lg-0 ">
+          <li class="nav-item dropdown">
+          <a class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            {% trans "KO'RISH" %}
+          </a>
+          <ul class="dropdown-menu licolor" aria-labelledby="navbarDropdown" style="border-radius: 10px">
+            <li><a class="dropdown-item licolor" href="#">
+                <h5 style="font-weight: 700">{% trans "MVU Suhbatlari" %}</h5><p class="text-sm">{% trans "MVU yosh spikerlardan suhbatlar" %}</p>
+            </a></li>
+            <li><a class="dropdown-item licolor" href="#">Another action</a></li>
+            <li><a class="dropdown-item licolor" href="#">Something else here</a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+        </li>
+      </ul>
+       <div class="search-box">
+           <input class="search-txt" type="text" placeholder="{% trans 'Qidirish' %}">
+           <a class="search-btn" href="">
+            <i class="bi-search"></i>
+           </a>
+       </div>
+    </div>
+  </div>
+</nav>
+<div class="join">
+    <div class="join-text">
+        <h4 class="join-text-h4">{% trans "TheMVU a'zosi bo'ling" %}</h4>
+        <h6>{% trans "TheMVU bilan butunlay yangi tarzda shug'ullaning. TheMVU a'zolari, TheMVU sahnasidagi buyuk nomlar bilan unutilmas voqealarga, global hamjamiyat bilan ilhomlantiruvchi suhbatlarga va boshqalarga eksklyuziv kirish huquqiga ega bo'ladilar." %}</h6>
+        <button class="join-btn">{% trans "A'zo bo'lish" %} <i class="bi bi-arrow-right"></i></button>
+    </div>
+</div>
+{% block content %}
+
+{% endblock %}
+</body>
+<script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.js' %}"></script>
+</html>
