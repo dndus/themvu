@@ -50,5 +50,5 @@ class Post(TranslateMixin, models.Model):
     subject_en = models.CharField(max_length=100, verbose_name=_("Sarlavha (en)"))
     video = models.FileField(verbose_name=_("Video"), upload_to=posts_upload_to)
     added_at = models.DateTimeField(auto_now_add=True)
-    # read = models.IntegerField(default=0)
+    view = models.IntegerField(default=0)
     # like = models.IntegerField(default=0)

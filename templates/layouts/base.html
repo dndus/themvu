@@ -24,18 +24,16 @@
         </ul>
       <ul class="navbar-nav mb-2 mb-lg-0 ">
           <li class="nav-item dropdown">
-            <div onmouseout="onRemove()">
-          <a onmouseover="onShow()" class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <a onmouseover="onShow()" onmouseout="onRemove()" class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             {% trans "KO'RISH" %}
           </a>
-          <ul id="d-menu" class="dropdown-menu licolor show" aria-labelledby="navbarDropdown" style="border-radius: 10px">
+          <ul id="d-menu" onmouseout="onRemove()" onmouseover="onShow()" class="dropdown-menu licolor" aria-labelledby="navbarDropdown" style="border-radius: 10px">
             <li><a class="dropdown-item licolor" href="#">
                 <h5 style="font-weight: 700">{% trans "MVU Suhbatlari" %}</h5><p class="text-sm">{% trans "MVU yosh spikerlardan suhbatlar" %}</p>
             </a></li>
             <li><a class="dropdown-item licolor" href="#">Another action</a></li>
             <li><a class="dropdown-item licolor" href="#">Something else here</a></li>
           </ul>
-              </div>
         </li>
         <li class="nav-item">
           <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
@@ -115,6 +113,20 @@
 </body>
 <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.js' %}"></script>
 <script>
+    function onShow() {
+        element1 = document.getElementById('navbarDropdown')
+        element2 = document.getElementById('d-menu')
 
+        element1.classList.add('show')
+        element2.classList.add('show')
+    }
+
+    function onRemove() {
+        element1 = document.getElementById('navbarDropdown')
+        element2 = document.getElementById('d-menu')
+
+        element1.classList.remove('show')
+        element2.classList.remove('show')
+    }
 </script>
 </html>
