@@ -1,25 +1,50 @@
 {% extends 'layouts/base.html' %}
 {% load static i18n %}
 {% block content %}
-    <div class="row">
-        <div class="col-lg-9">
+    <div class="row p-0 m-0">
+        <div class="col-lg-7 px-0">
             <div class="h-100">
                 <div class="card-body d-flex flex-column">
-                    <video poster="{% static 'img/ted.jpg' %}" preload="none" width="200">
+                    <video controls width="860">
                         <source src="{{ post.video.url }}">
                     </video>
                     <p style="padding-top: 15px; font-size: 12px"
                        class="text-muted">{{ request.user.first_name|upper }}</p>
                     <h5 class="card-title">{{ post.subject }}</h5>
-                    <span class="text-muted fs-6"
-                          style="size: 2px">{% trans "Qo'shilgan" %} {{ post.added_at|date:'M Y' }}</span>
+                    <div class="row">
+                        <div class="col-3">
+                        <span class="text-muted fs-6 d-flex"
+                              style="size: 2px">{% trans "Qo'shilgan" %} {{ post.added_at|date:'M Y' }}</span>
+                        </div>
+                        <div class="col-9">
+                            <i class="bi-eye"></i>
+                            {{ post.view }}
+                        </div>
+                    </div>
+                    <div>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="col-lg-3">
-            {% for row in posts %}
-                <div class="mb-3">
-                    {% include 'widgets/post-info.html' with item=row hauto=false %}
+        <div class="col-lg-5">
+            {% for post in random %}
+                <div class="mb-3" style="max-width: 500px;">
+                    <div class="row g-0">
+                        <div class="col-md-4 pt-4">
+                            <video width="180">
+                                <source src="{{ post.video.url }}">
+                            </video>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <p style="padding-top: 15px; font-size: 12px"
+                                   class="text-muted">{{ request.user.first_name|upper }}</p>
+                                <h5 class="card-title fs-6">{{ post.subject }}</h5>
+                                <span class="text-muted fs-6 d-flex"
+                                      style="size: 2px">{% trans "Qo'shilgan" %} {{ post.added_at|date:'M Y' }}</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             {% endfor %}
         </div>

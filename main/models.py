@@ -3,7 +3,7 @@ import random
 from datetime import datetime
 from django.db import models
 from themvu.mixins import TranslateMixin
-from django.contrib.auth.models import User
+from account.models import User
 from django.utils.translation import gettext_lazy as _
 
 

@@ -1,0 +1,21 @@
+{% extends 'layouts/base.html' %}
+{% load static i18n %}
+
+{% block content %}
+    <div class="row">
+    <div class="col-lg-2 col-md-12">
+                <div class="h-100">
+                    <div class="card-body d-flex flex-column">
+                        {% for rec in post %}
+                            <video poster="{% static 'img/ted.jpg' %}" preload="none" width="200">
+                                <source src="{{ rec.video.url }}">
+                            </video>
+                            <p style="padding-top: 15px; font-size: 12px"
+                               class="text-muted">{{ request.user.first_name|upper }}</p>
+                            <h5 class="card-title">{{ rec.subject }}</h5>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+    </div>
+{% endblock %}
