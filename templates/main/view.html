@@ -1,0 +1,29 @@
+{% extends 'layouts/base.html' %}
+{% load static i18n %}
+{% block content %}
+    <div class="row">
+        <div class="col-lg-9">
+            <div class="h-100">
+                <div class="card-body d-flex flex-column">
+                    <video poster="{% static 'img/ted.jpg' %}" preload="none" width="200">
+                        <source src="{{ post.video.url }}">
+                    </video>
+                    <p style="padding-top: 15px; font-size: 12px"
+                       class="text-muted">{{ request.user.first_name|upper }}</p>
+                    <h5 class="card-title">{{ post.subject }}</h5>
+                    <span class="text-muted fs-6"
+                          style="size: 2px">{% trans "Qo'shilgan" %} {{ post.added_at|date:'M Y' }}</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            {% for row in posts %}
+                <div class="mb-3">
+                    {% include 'widgets/post-info.html' with item=row hauto=false %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+
+{% endblock %}
