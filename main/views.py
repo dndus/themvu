@@ -1,7 +1,9 @@
 from django.http import request
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic import TemplateView, ListView
 from django.utils.translation import gettext_lazy as _
+
+from .form import PostForm
 from .models import *
 
 
@@ -47,5 +49,38 @@ def all_posts(request, id=None):
         post = Post.objects.order_by('-id')
     return render(request, 'main/all-posts.html', {
         'post': post
-
     })
+
+
+def main_add_post(request):
+
+    if not request.user.is_authenticated:
+        return redirect('index')
+
+    form = PostForm()
+    if request.method == 'POST':
+        form = PostForm(data=request.POST, files=request.FILES)
+        if form.is_valid():
+            form.instance.user = request.user
+            form.save()
+
+            return redirect('main:index')
+
+    request.page_title = _("Maqola qo'shish")
+    return render(request, 'main/add-post.html', {
+        'form': form
+    })
+
+
+def main_search(request):
+    if request.method == 'POST':
+        q = request.POST['q']
+        post = Post.objects.filter(subject_uz__icontains=q)
+
+        return render(request, 'main/post-search.html', {
+            'q': q,
+            'posts': post
+        })
+    else:
+        return render(request, 'main/post-search.html', {
+        })

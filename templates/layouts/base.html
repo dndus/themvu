@@ -48,9 +48,11 @@
             <li><a class="dropdown-item licolor" href="#">Something else here</a></li>
           </ul>
         </li>
+      {% if request.user.is_authenticated %}
         <li class="nav-item">
-          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+          <a class="nav-link" href="{% url 'add-post' %}">{% trans "POST QO'SHISH" %}</a>
         </li>
+      {% endif %}
           <li class="nav-item">
           <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
         </li>
@@ -64,12 +66,15 @@
         </li>
           {% endif %}
       </ul>
+        <form method="POST" action="{% url 'searched' %}">
        <div class="search-box">
-           <input class="search-txt" type="text" placeholder="{% trans 'Qidirish' %}">
+           {% csrf_token %}
+           <input class="search-txt" type="text" name="q" placeholder="{% trans 'Qidirish' %}">
            <a class="search-btn" href="">
             <i class="bi-search"></i>
            </a>
        </div>
+       </form>
     </div>
   </div>
 </nav>

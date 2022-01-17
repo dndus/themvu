@@ -32,7 +32,7 @@
                 <div class="h-100">
                     <div class="card-body d-flex flex-column">
                         {% for rec in recommend %}
-                            <a href="{% url 'view' post.id %}">
+                            <a href="{% url 'view' rec.id %}">
                             <video poster="{% static 'img/ted.jpg' %}" preload="none" width="400">
                                 <source src="{{ rec.video.url }}">
                             </video>
