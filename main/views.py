@@ -40,5 +40,12 @@ def main_view_post(request, id):
     })
 
 
-def all_posts(request, id):
-    pass
+def all_posts(request, id=None):
+    if id is not None:
+        post = Post.objects.get(id=id)
+    else:
+        post = Post.objects.order_by('-id')
+    return render(request, 'main/all-posts.html', {
+        'post': post
+
+    })
