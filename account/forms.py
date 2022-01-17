@@ -17,7 +17,7 @@ class RegistrationForm(forms.ModelForm):
         fields = ('username', 'first_name', 'last_name', 'password')
 
         labels = {
-            'username': 'Email'
+            'username': 'Username'
         }
 
         widgets = {
@@ -26,5 +26,5 @@ class RegistrationForm(forms.ModelForm):
 
 
 class LoginForm(forms.Form):
-    username = forms.CharField(required=True, label='Email')
+    username = forms.CharField(required=True, label='Username')
     password = forms.CharField(required=True, min_length=6, widget=forms.PasswordInput)

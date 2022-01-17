@@ -124,8 +124,8 @@ USE_L10N = True
 USE_TZ = False
 
 LANGUAGES = (
-    ('uz', "O'zbekcha"),
-    ('en', 'English')
+    ('uz', "O'z"),
+    ('en', 'Eng')
 )
 
 LOCALE_PATHS = [

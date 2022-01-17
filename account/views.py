@@ -1,7 +1,28 @@
 from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, redirect
+from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
+from django.views.generic import UpdateView
+
 from .forms import *
+
+
+class ClientProfile(LoginRequiredMixin, UpdateView):
+    model = User
+    fields = ['first_name', 'last_name', 'username', 'email', 'photo']
+    template_name = 'layouts/form.html'
+    success_url = reverse_lazy('profile')
+
+    def setup(self, request, *args, **kwargs):
+        super().setup(request, *args, **kwargs)
+
+        request.page_title = _("Profile")
+        request.button_title = _("Saqlash")
+
+    def get_object(self, queryset=None):
+        return self.request.user
 
 
 def account_registration(request):

@@ -1,8 +1,8 @@
 {% extends 'layouts/base.html' %}
 {% load static i18n %}
 {% block content %}
-    <div class="row p-0 m-0">
-        <div class="col-lg-7 px-0">
+    <div class="row p-0 mx-0">
+        <div class="col-lg-7 px-0 mx-0">
             <div class="h-100">
                 <div class="card-body d-flex flex-column">
                     <video controls width="860">
@@ -31,9 +31,11 @@
                 <div class="mb-3" style="max-width: 500px;">
                     <div class="row g-0">
                         <div class="col-md-4 pt-4">
+                            <a href="{% url 'view' post.id %}">
                             <video width="180">
                                 <source src="{{ post.video.url }}">
                             </video>
+                            </a>
                         </div>
                         <div class="col-md-8">
                             <div class="card-body">

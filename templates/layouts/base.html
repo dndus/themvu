@@ -16,151 +16,171 @@
 <body>
 
 <div id="load" class="loader">
-  <div class="bar1"></div>
-  <div class="bar2"></div>
-  <div class="bar3"></div>
-  <div class="bar4"></div>
-  <div class="bar5"></div>
-  <div class="bar6"></div>
+    <div class="bar1"></div>
+    <div class="bar2"></div>
+    <div class="bar3"></div>
+    <div class="bar4"></div>
+    <div class="bar5"></div>
+    <div class="bar6"></div>
 </div>
 
 <div id="remove-none" class="d-none">
-<nav class="navbar navbar-expand-lg navbar-light">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="{% url 'index' %}"><img src="{% static 'img/themvu.png' %}" alt="uzbekistan"></a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0 hidden">
-            <li></li>
-        </ul>
-      <ul class="navbar-nav mb-2 mb-lg-0 ">
-          <li class="nav-item dropdown">
-          <a onmouseover="onShow()" onmouseout="onRemove()" class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            {% trans "KO'RISH" %}
-          </a>
-          <ul id="d-menu" onmouseout="onRemove()" onmouseover="onShow()" class="dropdown-menu licolor" aria-labelledby="navbarDropdown" style="border-radius: 10px">
-            <li><a class="dropdown-item licolor" href="{% url 'posts' %}">
-                <h5 style="font-weight: 700">{% trans "MVU Suhbatlari" %}</h5><p class="text-sm">{% trans "MVU yosh spikerlardan suhbatlar" %}</p>
-            </a></li>
-            <li><a class="dropdown-item licolor" href="#">Another action</a></li>
-            <li><a class="dropdown-item licolor" href="#">Something else here</a></li>
-          </ul>
-        </li>
-      {% if request.user.is_authenticated %}
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'add-post' %}">{% trans "POST QO'SHISH" %}</a>
-        </li>
-      {% endif %}
-          <li class="nav-item">
-          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-        </li>
-          {% if not request.user.is_authenticated %}
-          <li class="nav-item">
-          <a class="nav-link" href="{% url 'login' %}">{% trans 'KIRISH' %}</a>
-        </li>
-          {% else %}
-          <li class="nav-item">
-          <a class="nav-link" href="{% url 'logout' %}">{% trans 'CHIQISH' %}</a>
-        </li>
-          {% endif %}
-      <li class="nav-item dropdown">
-            <a href="#" data-bs-toggle="dropdown" class="dropdown-toggle btn btn-secondary">
-                {% for l in LANGUAGE %}{% if l.0 == LANGUAGE_CODE %}{{ l.1 }}{% endif %}{% endfor %}
-            </a>
-            <div class="dropdown-menu">
-                {% for l in LANGUAGE %}
-                    <a href="/{{ l.0 }}/" class="dropdown-item">{{ l.1 }}</a>
-                {% endfor %}
-            </div>
-        </li>
-      </ul>
-        <form method="POST" action="{% url 'searched' %}">
-       <div class="search-box">
-           {% csrf_token %}
-           <input class="search-txt" type="text" name="q" placeholder="{% trans 'Qidirish' %}">
-           <a class="search-btn" href="">
-            <i class="bi-search"></i>
-           </a>
-       </div>
-       </form>
-    </div>
-  </div>
-</nav>
-<div class="join">
-    <div class="join-text">
-        <h4 class="join-text-h4">{% trans "TheMVU a'zosi bo'ling" %}</h4>
-        <h6>{% trans "TheMVU bilan butunlay yangi tarzda shug'ullaning. TheMVU a'zolari, TheMVU sahnasidagi buyuk nomlar bilan unutilmas voqealarga, global hamjamiyat bilan ilhomlantiruvchi suhbatlarga va boshqalarga eksklyuziv kirish huquqiga ega bo'ladilar." %}</h6>
-        {% if not request.user.is_authenticated %}
-        <a href="{% url 'registration' %}">
-        <button class="join-btn">{% trans "A'zo bo'lish" %} <i class="bi bi-arrow-right"></i></button>
-        </a>
-        {% endif %}
-    </div>
-</div>
-{% block content %}
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{% url 'index' %}"><img src="{% static 'img/themvu.png' %}" alt="uzbekistan"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 hidden">
+                    <li></li>
+                </ul>
+                <ul class="navbar-nav mb-2 mb-lg-0 ">
+                    <li class="nav-item dropdown">
+                        <a onmouseover="onShow()" onmouseout="onRemove()" class="nav-link" href="#" id="navbarDropdown"
+                           role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            {% trans "KO'RISH" %}
+                        </a>
+                        <ul id="d-menu" onmouseout="onRemove()" onmouseover="onShow()" class="dropdown-menu licolor"
+                            aria-labelledby="navbarDropdown" style="border-radius: 10px">
+                            <li><a class="dropdown-item licolor" href="{% url 'posts' %}">
+                                <h5 style="font-weight: 700">{% trans "MVU Suhbatlari" %}</h5>
+                                <p class="text-sm">{% trans "MVU yosh spikerlardan suhbatlar" %}</p>
+                            </a></li>
+                            <li><a class="dropdown-item licolor" href="#">Another action</a></li>
+                            <li><a class="dropdown-item licolor" href="#">Something else here</a></li>
+                        </ul>
+                    </li>
+                    {% if request.user.is_authenticated %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'add-post' %}">{% trans "POST QO'SHISH" %}</a>
+                        </li>
+                    {% endif %}
+                    {% if not request.user.is_authenticated %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'login' %}">{% trans 'KIRISH' %}</a>
+                        </li>
+                    {% endif %}
+                        {% if request.user.is_authenticated %}
+                        <div class="dropdown pe-1">
+                            <a class="" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown">
+                                {% if user.photo %}
+                                <img class="user-avatar cover" src="{{ user.photo.url }}" alt="">
+                                    {% else %}
+                                   <img class="user-avatar cover" src="{% static 'img/no-photo.png' %}" alt="">
+                                    {% endif %}
+                            </a>
 
-{% endblock %}
-<hr class="footer-line"/>
-<footer class="footer">
-  	 <div class="container">
-  	 	<div class="row">
-  	 		<div class="footer-col">
-              <img src="{% static 'img/themvu.png' %}" alt="uzbekistan">
-                <h4></h4>
-  	 			<ul style="padding: 0">
-  	 				<li><a href="#">Home</a></li>
-  	 				<li><a href="#">About</a></li>
-  	 				<li><a href="#">Pricing</a></li>
-  	 				<li><a href="#">Privacy Policy</a></li>
-  	 			</ul>
-  	 		</div>
-  	 		<div class="footer-col">
-  	 			<h4>Get Help</h4>
-  	 			<ul style="padding: 0">
-  	 				<li><a href="#">Shipping</a></li>
-  	 				<li><a href="#">Returns</a></li>
-  	 				<li><a href="#">Order Status</a></li>
-  	 				<li><a href="#">Payment Options</a></li>
-  	 			</ul>
-  	 		</div>
-  	 		<div class="footer-col">
-  	 			<h4>Address</h4>
-  	 			<ul style="padding: 0">
-  	 				<li><a href="#">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cupiditate adipisci quia ab omnis id ipsum quae inventore </a></li>
-  	 			</ul>
-  	 		</div>
-  	 		<div class="footer-col">
-  	 			<h4>follow us</h4>
-  	 			<div class="social-links">
-  	 				<a href="#"><i class="bi bi-google"></i></a>
-  	 				<a href="#"><i class="bi bi-facebook"></i></a>
-  	 				<a href="#"><i class="bi bi-instagram"></i></a>
-{#  	 				<a href="#"><i class="bi bi-twitter"></i></a>#}
-  	 			</div>
-  	 		</div>
-  	 	</div>
-  	 </div>
-  </footer>
-<div class="footer-end">
-    <div class="fend-info">
-        &copy;{% now "Y" %} Developed by dndus
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                <li><a class="dropdown-item" href="{% url 'profile' %}">Profile</a></li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'logout' %}">{% trans 'CHIQISH' %}</a>
+                                </li>
+                            </ul>
+                        </div>
+                    {% endif %}
+                    <li class="nav-item dropdown">
+                        <a href="#" data-bs-toggle="dropdown" class="btn">
+                            {% for l in LANGUAGE %}{% if l.0 == LANGUAGE_CODE %}{{ l.1 }}{% endif %}{% endfor %}
+                        </a>
+                        <div class="dropdown-menu">
+                            {% for l in LANGUAGE %}
+                                <a href="/{{ l.0 }}/" class="dropdown-item">{{ l.1 }}</a>
+                            {% endfor %}
+                        </div>
+                    </li>
+                 <li class="nav-item">
+                        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                    </li>
+                </ul>
+                <form method="POST" action="{% url 'searched' %}">
+                    <div class="search-box">
+                        {% csrf_token %}
+                        <input class="search-txt" type="text" name="q" placeholder="{% trans 'Qidirish' %}">
+                        <a class="search-btn" href="">
+                            <i class="bi-search"></i>
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </nav>
+    <div class="join">
+        <div class="join-text">
+            <h4 class="join-text-h4">{% trans "TheMVU a'zosi bo'ling" %}</h4>
+            <h6>{% trans "TheMVU bilan butunlay yangi tarzda shug'ullaning. TheMVU a'zolari, TheMVU sahnasidagi buyuk nomlar bilan unutilmas voqealarga, global hamjamiyat bilan ilhomlantiruvchi suhbatlarga va boshqalarga eksklyuziv kirish huquqiga ega bo'ladilar." %}</h6>
+            {% if not request.user.is_authenticated %}
+                <a href="{% url 'registration' %}">
+                    <button class="join-btn">{% trans "A'zo bo'lish" %} <i class="bi bi-arrow-right"></i></button>
+                </a>
+            {% endif %}
+        </div>
     </div>
-</div>
+    {% block content %}
+
+    {% endblock %}
+    <hr class="footer-line"/>
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="footer-col">
+                    <img src="{% static 'img/themvu.png' %}" alt="uzbekistan">
+                    <h4></h4>
+                    <ul style="padding: 0">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Pricing</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Get Help</h4>
+                    <ul style="padding: 0">
+                        <li><a href="#">Shipping</a></li>
+                        <li><a href="#">Returns</a></li>
+                        <li><a href="#">Order Status</a></li>
+                        <li><a href="#">Payment Options</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Address</h4>
+                    <ul style="padding: 0">
+                        <li><a href="#">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cupiditate adipisci
+                            quia ab omnis id ipsum quae inventore </a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>follow us</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="bi bi-google"></i></a>
+                        <a href="#"><i class="bi bi-facebook"></i></a>
+                        <a href="#"><i class="bi bi-instagram"></i></a>
+                        {#  	 				<a href="#"><i class="bi bi-twitter"></i></a>#}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <div class="footer-end">
+        <div class="fend-info">
+            &copy;{% now "Y" %} Developed by dndus
+        </div>
+    </div>
 </div>
 </body>
 <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.js' %}"></script>
 <script>
 
-    window.onload = function(){
-     setTimeout(function(){
-         element1 = document.getElementById('remove-none')
-         element2 = document.getElementById('load')
+    window.onload = function () {
+        setTimeout(function () {
+            element1 = document.getElementById('remove-none')
+            element2 = document.getElementById('load')
 
-         element1.classList.remove('d-none')
-         element2.classList.add('d-none')
-     }, 500);
+            element1.classList.remove('d-none')
+            element2.classList.add('d-none')
+        }, 500);
     };
 
     function onShow() {
