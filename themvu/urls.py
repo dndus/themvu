@@ -26,4 +26,6 @@ urlpatterns = [
 urlpatterns += i18n_patterns(
     path('', include('main.urls')),
     path('account/', include('account.urls')),
+    path('accounts/', include('registration.backends.default.urls')),
+
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

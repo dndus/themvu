@@ -64,7 +64,7 @@ def main_add_post(request):
             form.instance.user = request.user
             form.save()
 
-            return redirect('main:index')
+            return redirect('index')
 
     request.page_title = _("Maqola qo'shish")
     return render(request, 'main/add-post.html', {

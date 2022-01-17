@@ -25,12 +25,13 @@ SECRET_KEY = 'django-insecure-c#((#_=u(5n7a=9xo!i_5g(c9gge#f-@q%hkn4b3-v@5t%0$x=
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'registration',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -51,6 +52,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.locale.LocaleMiddleware'
 ]
 
 ROOT_URLCONF = 'themvu.urls'
@@ -117,6 +119,8 @@ TIME_ZONE = 'Asia/Tashkent'
 
 USE_I18N = True
 
+USE_L10N = True
+
 USE_TZ = False
 
 LANGUAGES = (
@@ -149,3 +153,15 @@ AUTH_USER_MODEL = 'account.User'
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 
 CRISPY_TEMPLATE_PACK = "bootstrap5"
+
+
+ACCOUNT_ACTIVATION_DAYS = 1
+REGISTRATION_AUTO_LOGIN = True
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'themvuinfo@gmail.com'
+EMAIL_HOST_PASSWORD = 'diyorbek_us04'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = 'default from email'
